@@ -8,11 +8,11 @@ export default class ContactForm extends Component {
     number: '',
   };
 
-  //   handleInputChange = event => {
-  //     this.setState({
-  //       [event.target.name]: event.target.value,
-  //     });
-  //   };
+  handleContactsInputChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -28,13 +28,14 @@ export default class ContactForm extends Component {
   };
 
   render() {
-    const { handleInputChange } = this.props;
+    // const { handleInputChange } = this.props;
+    // console.log(handleInputChange);
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Name
           <input
-            onChange={handleInputChange}
+            onChange={this.handleContactsInputChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -46,7 +47,7 @@ export default class ContactForm extends Component {
         <label>
           Phone
           <input
-            onChange={handleInputChange}
+            onChange={this.handleContactsInputChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"

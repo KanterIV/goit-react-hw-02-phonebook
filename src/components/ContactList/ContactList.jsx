@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 export default class ContactList extends Component {
   render() {
-    const { contactsArr } = this.props;
+    const { contactsArr, deleteContact } = this.props;
     return (
       <ul>
         {contactsArr.map(contact => {
@@ -14,6 +14,7 @@ export default class ContactList extends Component {
               contactId={id}
               contactName={name}
               contactNumber={number}
+              deleteContact={deleteContact}
             />
           );
         })}

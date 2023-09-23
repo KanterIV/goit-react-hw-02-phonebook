@@ -37,6 +37,16 @@ export class App extends Component {
     });
   };
 
+  onDeleteBtnClick = contactId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== contactId
+        ),
+      };
+    });
+  };
+
   render() {
     const { contacts, filter } = this.state;
     const filterContactsArr = contacts.filter(contact => {
@@ -45,16 +55,16 @@ export class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm
-          handleInputChange={this.handleInputChange}
-          handleAddContact={this.handleAddContact}
-        />
+        <ContactForm handleAddContact={this.handleAddContact} />
         <h2>Contacts</h2>
         <Filter
           handleInputChange={this.handleInputChange}
           ContactsData={this.state}
         />
-        <ContactList contactsArr={filterContactsArr} />
+        <ContactList
+          contactsArr={filterContactsArr}
+          deleteContact={this.onDeleteBtnClick}
+        />
       </div>
     );
   }
