@@ -8,18 +8,18 @@ export default class ContactForm extends Component {
     number: '',
   };
 
-  handleInputChange = event => {
-    this.setState({
-      id: nanoid(),
-      [event.target.name]: event.target.value,
-    });
-  };
+  //   handleInputChange = event => {
+  //     this.setState({
+  //       [event.target.name]: event.target.value,
+  //     });
+  //   };
 
   handleSubmit = event => {
     event.preventDefault();
 
     const contact = {
       ...this.state,
+      id: nanoid(),
     };
 
     this.props.handleAddContact(contact);
@@ -28,12 +28,13 @@ export default class ContactForm extends Component {
   };
 
   render() {
+    const { handleInputChange } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Name
           <input
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -45,7 +46,7 @@ export default class ContactForm extends Component {
         <label>
           Phone
           <input
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
