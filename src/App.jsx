@@ -23,7 +23,7 @@ export class App extends Component {
 
   handleAddContact = contactData => {
     const hasContactDuplicate = this.state.contacts.some(
-      contact => contact.name === contactData.name
+      contact => contact.name.toLowerCase() === contactData.name.toLowerCase()
     );
 
     if (hasContactDuplicate) {
